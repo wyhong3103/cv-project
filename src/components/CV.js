@@ -1,10 +1,6 @@
 import { Component } from "react";
 
 class CV extends Component{
-    constructor(props){
-        super(props);
-    }
-
     render(){
         const {
             fname, lname,email, phone, desc
