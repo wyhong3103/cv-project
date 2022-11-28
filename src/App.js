@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Form from "./components/Form";
+import CV from "./components/CV";
 import './style/style.css'
 
 class App extends Component{
@@ -7,7 +8,38 @@ class App extends Component{
         super(props);
 
         this.state = {
-            display : 0,
+            display : 1,
+            info : {
+                personal : {
+                    fname : "First",
+                    lname : "Last",
+                    email : "test@test.com",
+                    phone : "testtest",
+                    desc : "lorem"
+                },
+                edu : [
+                    {
+                        school : "MIT",
+                        title : "CPER",
+                        fdate : "2020",
+                        tdate : "Present",
+                    }
+                ],
+                exp : [
+                    {
+                        company : "MIT's company",
+                        title : "SWE",
+                        fdate : "2022",
+                        tdate : "Present",
+                        desc : "A good job"
+                    }
+                ]
+            }
+        };
+
+        /*
+        this.state = {
+            display : 1,
             info : {
                 personal : {
                     fname : "",
@@ -34,9 +66,10 @@ class App extends Component{
                     }
                 ]
             }
-        };
+        };*/
 
         this.handleInfo = this.handleInfo.bind(this);
+        this.displayPage = this.displayPage.bind(this);
     }
 
     // Setter function
@@ -55,11 +88,19 @@ class App extends Component{
         });
     }
 
+    displayPage(mode){
+        if (mode === 0){
+            return <Form updParent={this.handleInfo} info={this.state.info}></Form>;
+        }else{
+            return <CV personal={this.state.info.personal} edu={this.state.info.edu} exp={this.state.info.exp}></CV>
+        }
+    }
+
     render(){
         return(
             <div className="main">
                 <h1 className="main-title">CV Generator</h1>
-                <Form updParent={this.handleInfo} info={this.state.info}></Form>
+                {this.displayPage(this.state.display)}
             </div>
         )
     }
