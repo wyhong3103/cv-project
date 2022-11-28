@@ -22,10 +22,10 @@ class CV extends Component{
                         this.props.exp.map((item, index) => {
                             return(
                                 <div key={index} className="cv-j-container">
-                                    <h4 className="cv-j-company">{item.company}</h4>
+                                    <h4 className="cv-j-company">@ {item.company}</h4>
                                     <p className="cv-j-title">{item.title}</p>
                                     <p className="cv-j-date">{item.fdate} - {item.tdate}</p>
-                                    <p className="cv-j-desc">{item.desc}</p>
+                                    <p className="cv-j-desc" id="cv-j-desc">{item.desc}</p>
                                 </div> 
                             )
                         })
@@ -37,7 +37,7 @@ class CV extends Component{
                         this.props.edu.map((item, index) => {
                             return(
                                 <div key={index} className="cv-e-container">
-                                    <h4 className="cv-e-school">{item.school}</h4>
+                                    <h4 className="cv-e-school">@ {item.school}</h4>
                                     <p className="cv-e-title">{item.title}</p>
                                     <p className="cv-e-date">{item.fdate} - {item.tdate}</p>
                                 </div> 

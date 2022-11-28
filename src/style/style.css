@@ -21,7 +21,6 @@ html{
     background-color: var(--blue1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap : 1rem;
 }
@@ -29,6 +28,18 @@ html{
 .main-title{
     font-size : 5rem;
 }
+
+.display-container{
+    display: flex;
+    flex-direction: column;
+    gap : 1rem;
+}
+
+/*
+
+    FORM STYLE
+
+*/
 
 .form{
     background-color: var(--blue2);
@@ -94,7 +105,7 @@ textarea{
 
 button {
     height : 5rem;
-    width : 30%;
+    width : 10rem;
     background-color: white;
     border : none;
     transition: all 0.3s;
@@ -105,7 +116,7 @@ button img{
     width : 3rem;
 }
 
-button:hover{
+.form button:hover{
     cursor: pointer;
     background-color: var(--blue1);
 }
@@ -116,5 +127,73 @@ button:hover{
     align-items: center;
 }
 
+/*
+
+    CV STYLE
+
+*/
+
+.CV-container{
+    background-color: white;
+    height : 70rem;
+    width : 60rem;
+    padding : 3rem;
+    display: flex;
+    flex-direction: column;
+    gap : 1rem;
+}
+
+.CV-container h3{
+    font-size : 2rem;
+    text-decoration: underline;
+}
+.CV-container h4{
+    font-size : 1.8rem;
+}
+
+.CV-container p{
+    font-size : 1.8rem;
+}
+
+.cv-p-name{
+    font-size: 3rem;
+}
+
+.cv-p-details{
+    font-weight: bold;
+}
 
 
+.cv-personal{
+    border-bottom : 0.3rem solid var(--slate5);
+    padding : 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap : 0.5rem;
+}
+
+.cv-exp, .cv-edu{
+    display: flex;
+    flex-direction: column;
+    gap : 1rem;
+}
+
+.cv-j-container, .cv-e-container{
+    display: flex;
+    flex-direction: column;
+    gap : 0.5rem;
+}
+
+#cv-j-desc{
+    font-size: 1.5rem;
+}
+
+.display-container button{
+    font-family: var(--font1);
+    font-size: 2rem;
+}
+
+.main-btn:hover{
+    cursor: pointer;
+    background-color: var(--blue2);
+}

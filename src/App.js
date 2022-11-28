@@ -8,38 +8,7 @@ class App extends Component{
         super(props);
 
         this.state = {
-            display : 1,
-            info : {
-                personal : {
-                    fname : "First",
-                    lname : "Last",
-                    email : "test@test.com",
-                    phone : "testtest",
-                    desc : "lorem"
-                },
-                edu : [
-                    {
-                        school : "MIT",
-                        title : "CPER",
-                        fdate : "2020",
-                        tdate : "Present",
-                    }
-                ],
-                exp : [
-                    {
-                        company : "MIT's company",
-                        title : "SWE",
-                        fdate : "2022",
-                        tdate : "Present",
-                        desc : "A good job"
-                    }
-                ]
-            }
-        };
-
-        /*
-        this.state = {
-            display : 1,
+            display : 0,
             info : {
                 personal : {
                     fname : "",
@@ -66,9 +35,10 @@ class App extends Component{
                     }
                 ]
             }
-        };*/
+        };
 
         this.handleInfo = this.handleInfo.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.displayPage = this.displayPage.bind(this);
     }
 
@@ -88,11 +58,31 @@ class App extends Component{
         });
     }
 
+    handleSubmit(){
+        this.setState({
+            display : (this.state.display === 1 ? 0 : 1)
+        })
+    }
+
     displayPage(mode){
         if (mode === 0){
-            return <Form updParent={this.handleInfo} info={this.state.info}></Form>;
+            return (
+                <div className="display-container">
+                    <Form updParent={this.handleInfo} info={this.state.info}></Form>;
+                    <div className="btn">
+                        <button className="main-btn" onClick={this.handleSubmit}>Submit</button>
+                    </div>
+                </div>
+            )
         }else{
-            return <CV personal={this.state.info.personal} edu={this.state.info.edu} exp={this.state.info.exp}></CV>
+            return (
+                <div className="display-container">
+                    <CV personal={this.state.info.personal} edu={this.state.info.edu} exp={this.state.info.exp}></CV>
+                    <div className="btn">
+                        <button className="main-btn" onClick={this.handleSubmit}>Back</button>
+                    </div>
+                </div>
+            )
         }
     }
 
