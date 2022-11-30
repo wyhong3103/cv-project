@@ -3,9 +3,6 @@ import { Component } from "react";
 class Personal extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            info : this.props.info
-        }
         this.handleFName = this.handleFName.bind(this);
         this.handleLName = this.handleLName.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
@@ -13,50 +10,24 @@ class Personal extends Component{
         this.handleDesc = this.handleDesc.bind(this);
     }
 
-
     handleFName(e){
-        const temp = this.state.info;
-        temp.fname = e.target.value;
-        this.setState({
-            info : temp
-        })
-        this.props.updParent(temp);
+        this.props.handleChange(0, "fname", e.target.value);
     }
 
     handleLName(e){
-        const temp = this.state.info;
-        temp.lname = e.target.value;
-        this.setState({
-            info : temp
-        })
-        this.props.updParent(temp);
+        this.props.handleChange(0, "lname", e.target.value);
     }
 
     handleEmail(e){
-        const temp = this.state.info;
-        temp.email = e.target.value;
-        this.setState({
-            info : temp
-        })
-        this.props.updParent(temp);
+        this.props.handleChange(0, "email", e.target.value);
     }
 
     handlePhone(e){
-        const temp = this.state.info;
-        temp.phone = e.target.value;
-        this.setState({
-            info : temp
-        })
-        this.props.updParent(temp);
+        this.props.handleChange(0, "phone", e.target.value);
     }
 
     handleDesc(e){
-        const temp = this.state.info;
-        temp.desc = e.target.value;
-        this.setState({
-            info : temp
-        })
-        this.props.updParent(temp);
+        this.props.handleChange(0, "desc", e.target.value);
     }
 
     render(){
@@ -69,24 +40,24 @@ class Personal extends Component{
                     <div className="hori-container">
                         <label>
                             First Name
-                            <input value={this.state.info.fname} onChange={this.handleFName}/>
+                            <input value={this.props.info.fname} onChange={this.handleFName}/>
                         </label>
                         <label>
                             Last Name
-                            <input value={this.state.info.lname} onChange={this.handleLName}/>
+                            <input value={this.props.info.lname} onChange={this.handleLName}/>
                         </label>
                     </div>
                     <label>
                         Email 
-                        <input value={this.state.info.email} onChange={this.handleEmail}/>
+                        <input value={this.props.info.email} onChange={this.handleEmail}/>
                     </label>
                     <label>
                         Phone
-                        <input value={this.state.info.phone} onChange={this.handlePhone}/>
+                        <input value={this.props.info.phone} onChange={this.handlePhone}/>
                     </label>
                     <label>
                         Description
-                        <textarea value={this.state.info.desc} onChange={this.handleDesc}></textarea>
+                        <textarea value={this.props.info.desc} onChange={this.handleDesc}></textarea>
                     </label>
                 </div>
             </div>

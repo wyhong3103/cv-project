@@ -7,43 +7,30 @@ class Form extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            personal : this.props.info.personal,
-            edu : this.props.info.edu,
-            exp : this.props.info.exp
-        }
-        this.handlePersonal = this.handlePersonal.bind(this);
-        this.handleEdu = this.handleEdu.bind(this);
-        this.handleExp = this.handleExp.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
-    handlePersonal(temp){
-        this.setState({
-            personal : temp
-        })
-        this.props.updParent(0, temp);
+    handleChange(type, key, value, index = -1){
+        this.props.handleChange(type, key, value, index);
     }
 
-    handleEdu(temp){
-        this.setState({
-            edu : temp
-        })
-        this.props.updParent(1, temp);
+    handleAdd(type){
+        this.props.handleAdd(type);
     }
 
-    handleExp(temp){
-        this.setState({
-            exp : temp
-        })
-        this.props.updParent(2, temp);
+    handleRemove(type, index){
+        this.props.handleRemove(type, index);
     }
+
 
     render(){
         return(
             <div className="form">
-              <Personal updParent={this.handlePersonal} info={this.state.personal}></Personal>  
-              <Education updParent={this.handleEdu} info={this.state.edu}></Education>
-              <Experience updParent={this.handleExp} info={this.state.exp}></Experience>
+              <Personal handleChange={this.handleChange} info={this.props.info.personal}></Personal>  
+              <Education handleChange={this.handleChange} handleAdd={this.handleAdd} handleRemove={this.handleRemove} info={this.props.info.edu}></Education>
+              <Experience handleChange={this.handleChange} handleAdd={this.handleAdd} handleRemove={this.handleRemove} info={this.props.info.exp}></Experience>
             </div>
         )
     };

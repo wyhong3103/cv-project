@@ -37,25 +37,76 @@ class App extends Component{
             }
         };
 
-        this.handleInfo = this.handleInfo.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.displayPage = this.displayPage.bind(this);
     }
 
-    // Setter function
-    handleInfo(type, temp){
-        const temp2 = this.state.info;
+    //Only adding!
+    handleChange(type, key, value, index = -1){
+        //0 = personal, 1 = education, 2 = experience
+        const temp = this.state.info;
         if (type === 0){
-            temp2.personal = temp;
+            temp.personal[key] = value;
         }else if (type === 1){
-            temp2.edu = temp;
+            temp.edu[index][key] = value;
         }else{
-            temp2.exp = temp;
+            temp.exp[index][key] = value;
+        }
+        this.setState({
+            info : temp
+        })
+    }
+
+    handleAdd(type){
+        const temp = this.state.info;
+        if (type===1){
+            temp.edu.push(
+                {
+                    school : "",
+                    title : "",
+                    fdate : "",
+                    tdate : "",
+                }
+            )
+        }else{
+            temp.exp.push(
+                {
+                    company : "",
+                    title : "",
+                    fdate : "",
+                    tdate : "",
+                    desc : ""
+                }
+            )
+        }
+        this.setState({
+            info : temp
+        })
+    }
+
+    handleRemove(type, index){
+        const temp = this.state.info;
+        const ori = (type === 1 ? temp.edu : temp.exp);
+        
+        const newArr = [];
+        for(let i = 0; i < ori.length; i++){
+            if (i !== index){
+                newArr.push(ori[i]);
+            }
+        }
+
+        if (type === 1){
+            temp.edu = newArr;
+        }else{
+            temp.exp = newArr;
         }
 
         this.setState({
-            info : temp2
-        });
+            info : temp
+        })
     }
 
     handleSubmit(){
@@ -64,11 +115,12 @@ class App extends Component{
         })
     }
 
+
     displayPage(mode){
         if (mode === 0){
             return (
                 <div className="display-container">
-                    <Form updParent={this.handleInfo} info={this.state.info}></Form>;
+                    <Form handleChange={this.handleChange} handleRemove={this.handleRemove} handleAdd={this.handleAdd} info={this.state.info}></Form>;
                     <div className="btn">
                         <button className="main-btn" onClick={this.handleSubmit}>Submit</button>
                     </div>

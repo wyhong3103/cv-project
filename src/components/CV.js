@@ -6,7 +6,7 @@ class CV extends Component{
             fname, lname,email, phone, desc
         } = this.props.personal;
         return(
-            <div className="CV-container">
+            <div id="CV" className="CV-container">
                 <div className="cv-personal">
                     <h2 className="cv-p-name">{fname} {lname}</h2>
                     <p className="cv-p-details">{email} | {phone}</p>
